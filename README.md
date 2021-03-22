@@ -18,14 +18,33 @@ pod 'LightFlySDK', :path => './LightFlySDK'
 
 2. Run `npx pod-install`
 
+3. Add `Privacy - Camera Usage Description` to `Info.plist`
+
+#### Android
+
+1.
+
+2.
+
+3.
+
 ## Usage
 
 ```js
 import Liphy from "react-native-liphy";
 
 // ...
+const [result, setResult] = React.useState();
 
-const result = await Liphy.multiply(3, 7);
+React.useEffect(() => {
+  Liphy.startTracking();
+  const removeListener = Liphy.addEventListener((data) => {
+    setResult(data.lightId);
+  });
+  return () => {
+    removeListener();
+  };
+}, []);
 ```
 
 ## Contributing
