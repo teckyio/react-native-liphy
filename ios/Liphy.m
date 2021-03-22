@@ -1,19 +1,57 @@
 #import "Liphy.h"
 
-@implementation Liphy
+@implementation Liphy {
+  bool hasListeners;
+}
 
 RCT_EXPORT_MODULE()
 
-// Example method
-// See // https://reactnative.dev/docs/native-modules-ios
-RCT_REMAP_METHOD(multiply,
-                 multiplyWithA:(nonnull NSNumber*)a withB:(nonnull NSNumber*)b
-                 withResolver:(RCTPromiseResolveBlock)resolve
-                 withRejecter:(RCTPromiseRejectBlock)reject)
-{
-  NSNumber *result = @([a floatValue] * [b floatValue]);
+- (void)initializeLightManager {
+  if (self.lightManager == nil) {
+    self.lightManager = [[LFLightManager alloc] init];
+    self.lightManager.delegate = self;
+    self.lightManager.activationKey = @"axscbhawe873d0asc70382";
+  }
+}
 
-  resolve(result);
+RCT_EXPORT_METHOD(startTracking)
+{
+  [self initializeLightManager];
+  [self.lightManager startTracking];
+}
+
+RCT_EXPORT_METHOD(setIsFront:(BOOL)isFront)
+{
+  [self initializeLightManager];
+  [self.lightManager setIsFront:isFront];
+}
+
+RCT_EXPORT_METHOD(stopTracking)
+{
+  [self initializeLightManager];
+  [self.lightManager stopTracking];
+}
+
+- (void)startObserving {
+    hasListeners = YES;
+}
+
+- (void)stopObserving {
+    hasListeners = NO;
+}
+
+- (void)lightManager:(LFLightManager *)manager didTrackLight:(LFLight *)light {
+  if (hasListeners) {
+    [self sendEventWithName:@"LightDetected" body:@{@"lightId": light.identifier}];
+  }
+}
+
+- (void)lightManager:(LFLightManager *)manager didUpdateProgress:(float)progress {
+
+}
+
+- (NSArray<NSString *> *)supportedEvents {
+  return @[@"LightDetected"];
 }
 
 @end

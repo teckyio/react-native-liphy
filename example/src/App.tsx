@@ -4,10 +4,17 @@ import { StyleSheet, View, Text } from 'react-native';
 import Liphy from 'react-native-liphy';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [result, setResult] = React.useState<string | undefined>();
 
   React.useEffect(() => {
-    Liphy.multiply(3, 7).then(setResult);
+    Liphy.startTracking();
+    const removeListener = Liphy.addEventListener((data) => {
+      console.log(data);
+      setResult(data.lightId);
+    });
+    return () => {
+      removeListener();
+    };
   }, []);
 
   return (

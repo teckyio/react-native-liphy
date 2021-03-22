@@ -5,6 +5,9 @@ buildscript {
   repositories {
     google()
     jcenter()
+    flatDir {
+      dirs 'libs'
+    }
   }
 
   dependencies {
@@ -33,9 +36,9 @@ android {
     targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
     versionCode 1
     versionName "1.0"
-    
+
   }
-  
+
   buildTypes {
     release {
       minifyEnabled false
@@ -127,4 +130,6 @@ dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation 'com.parse:parse-android:1.15.8'
+  implementation(name: 'liphy-sdk', ext: 'aar')
 }

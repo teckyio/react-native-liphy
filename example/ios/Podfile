@@ -19,3 +19,5 @@ target 'LiphyExample' do
     flipper_post_install(installer)
   end
 end
+
+pod 'LightFlySDK', :path => './LightFlySDK'
