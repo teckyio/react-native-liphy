@@ -1,4 +1,5 @@
 #import "Liphy.h"
+#import <LightFlySDK/LFLight.h>
 
 @implementation Liphy {
   bool hasListeners;

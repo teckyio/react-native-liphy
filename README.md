@@ -5,8 +5,18 @@ React Native Wrapper for LiPHY SDK
 ## Installation
 
 ```sh
-npm install react-native-liphy
+yarn add react-native-liphy
 ```
+
+#### iOS
+
+1. Put `LightFlySDK` to `ios/` of your react native projcet and add below line to the bottom of `ios/Podfile`
+
+```
+pod 'LightFlySDK', :path => './LightFlySDK'
+```
+
+2. Run `npx pod-install`
 
 ## Usage
 
