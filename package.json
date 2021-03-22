@@ -36,13 +36,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/tecky.io/react-native-liphy",
-  "author": "Alex Lau <alex@tecky.io> (https://github.com/tecky.io)",
+  "repository": "https://github.com/teckyio/react-native-liphy",
+  "author": "Alex Lau <alex@teckyio> (https://github.com/teckyio)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tecky.io/react-native-liphy/issues"
+    "url": "https://github.com/teckyio/react-native-liphy/issues"
   },
-  "homepage": "https://github.com/tecky.io/react-native-liphy#readme",
+  "homepage": "https://github.com/teckyio/react-native-liphy#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
